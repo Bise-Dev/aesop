@@ -10,7 +10,7 @@
     {
       "name": "aesop",
       "source": "./",
-      "description": "PR storyteller — narrates a pull request's changes with code snippets and Mermaid diagrams, then assesses criticality and blast radius.",
+      "description": "PR storyteller - narrates a pull request's changes with code snippets and Mermaid diagrams, then assesses criticality and blast radius.",
       "category": "development",
       "keywords": ["pull-request", "code-review", "narrative", "blast-radius"]
     }
