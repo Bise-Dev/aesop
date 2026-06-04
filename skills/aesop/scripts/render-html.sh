@@ -24,7 +24,7 @@ cat > "$OUT" <<'HEAD'
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>aesop - PR story</title>
+<title>aesop: PR story</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Asar&display=swap');
 
@@ -35,7 +35,7 @@ cat > "$OUT" <<'HEAD'
   --font-serif:'Asar',Georgia,'Times New Roman',serif;
   --radius:0.625rem;
   --ease:cubic-bezier(0.16,1,0.3,1);
-  /* light - warm cream surfaces */
+  /* light: warm cream surfaces */
   --bg:#faf9f6;
   --fg:#43392e;
   --muted-fg:#6f6555;
@@ -123,7 +123,7 @@ a.ref:hover{background:#0284c7;text-decoration:none}
 .ref-src:target{outline:2px solid var(--hl-border-focus);outline-offset:2px;border-radius:4px}
 .story-diff:has(.snip-anchor:target){outline:2px solid var(--hl-border-focus);outline-offset:2px}
 
-/* the moral - risk table */
+/* the moral: risk table */
 table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:.93rem;
   border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 th,td{border-bottom:1px solid var(--border);padding:.55rem .8rem;text-align:left;vertical-align:top}
@@ -151,7 +151,7 @@ cat >> "$OUT" <<'TAIL'
 <!-- CDN libs are version-pinned. For a hardened/offline viewer, vendor these
      files locally, OR add Subresource Integrity: fetch the pinned file, compute
      openssl dgst -sha384 -binary file | openssl base64 -A, and set
-     integrity="sha384-<hash>" on the <script>. (No fabricated hash here - a
+     integrity="sha384-<hash>" on the <script>. (No fabricated hash here, a
      wrong integrity value silently blocks the script.) -->
 <script src="https://cdn.jsdelivr.net/npm/marked@15/marked.min.js" crossorigin="anonymous"></script>
 <script type="module">

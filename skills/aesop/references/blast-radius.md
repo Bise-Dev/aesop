@@ -1,18 +1,18 @@
-# aesop - criticality & blast radius
+# aesop: criticality & blast radius
 
 The moral of every story is a blunt read on risk. Two axes:
 
-- **Criticality** - how much it would hurt if this change is wrong.
+- **Criticality**: how much it would hurt if this change is wrong.
   `low | medium | high | critical`.
-- **Blast radius** - how far the change reaches across the codebase / system.
+- **Blast radius**: how far the change reaches across the codebase / system.
   `small | medium | large`.
 
 ## Method (default: direct callers)
 
-1. **List changed public symbols** - from the diff, collect exported/public
+1. **List changed public symbols**: from the diff, collect exported/public
    functions, classes, types, routes, config keys, schema/migrations, env vars,
    and public API or CLI surfaces that changed.
-2. **Find direct dependents** - for each symbol:
+2. **Find direct dependents**, for each symbol:
    - `search_code` for behavioral/intent matches across files.
    - Grep for the exact symbol name for precise call sites and imports.
    - Note dependents that are entry points, public APIs, shared/core modules,
@@ -40,7 +40,7 @@ The moral of every story is a blunt read on risk. Two axes:
 ## Escalation: deep full-graph trace
 
 Trigger when the verdict is **critical**, blast radius is **large**, or `--deep`
-is passed. Unless `--deep`, offer it first ("This looks high-impact - run a deep
+is passed. Unless `--deep`, offer it first ("This looks high-impact; run a deep
 dependency trace? (y/n)").
 
 Dispatch a read-only **`Explore`** subagent:
@@ -54,7 +54,7 @@ Dispatch a read-only **`Explore`** subagent:
 Fold its findings into the moral and, where the coupling is non-obvious, into a
 Mermaid dependency diagram in the story.
 
-## The moral - output format
+## The moral: output format
 
 ````markdown
 ## 📜 The moral
@@ -65,13 +65,13 @@ Mermaid dependency diagram in the story.
 | Blast radius | **medium** | 7 direct callers across 3 modules |
 
 **What to watch:** session expiry now uses `<=`; verify no caller relied on the
-old exclusive boundary. Migration `0042` is irreversible - confirm a backup.
+old exclusive boundary. Migration `0042` is irreversible; confirm a backup.
 
 **Deep trace:** _(only if escalated)_ `validateSession` is reached by all 4 API
 entry points via `requireAuth`; a regression fails every authenticated route.
 ````
 
 Keep it short and concrete. Cite `file:line` where you can. State confidence
-when a claim is inferred rather than verified. This is advice - remind the user
+when a claim is inferred rather than verified. This is advice; remind the user
 that technical/risk conclusions should be double-checked by a qualified reviewer
 before acting on them.

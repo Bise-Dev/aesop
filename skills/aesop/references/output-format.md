@@ -1,4 +1,4 @@
-# aesop - output format
+# aesop: output format
 
 The story is a Markdown document that must render well in **three** places with
 no per-target rewriting:
@@ -9,35 +9,35 @@ no per-target rewriting:
 
 The rule that makes this work: **use only native Markdown constructs.** Code goes
 in standard fenced blocks (` ```diff `, ` ```rust `, …), diagrams in ` ```mermaid `.
-No custom info strings, no JSON headers, no HTML comments inside code - those
+No custom info strings, no JSON headers, no HTML comments inside code; those
 render as literal noise in the terminal and on GitHub. The HTML viewer *upgrades*
 the same plain markdown (diff coloring, bidirectional refs); it never requires a
 special syntax.
 
 ## Structure
 
-1. **Title** - `# 📖 <PR title>`.
-2. **Subtitle** - one line: `` `<owner>/<repo>` · PR #<n> · `<author>` · `<head> → <base>` · +X −Y · N files · STATE ``.
-3. **Summary** - one paragraph: what the PR accomplishes and why. No code yet.
-4. **Chapters** - the story, split into named chapters (see below). Prose grouped
+1. **Title**: `# 📖 <PR title>`.
+2. **Subtitle**, one line: `` `<owner>/<repo>` · PR #<n> · `<author>` · `<head> → <base>` · +X −Y · N files · STATE ``.
+3. **Summary**, one paragraph: what the PR accomplishes and why. No code yet.
+4. **Chapters**: the story, split into named chapters (see below). Prose grouped
    by *intent*, not file order, interspersed with diff snippets and Mermaid diagrams.
-5. **The moral** - `## 📜 The moral` - risk table + "what to watch"
+5. **The moral**: `## 📜 The moral`, a risk table + "what to watch"
    (see [blast-radius.md](blast-radius.md)).
 
 ## Chapters
 
-Split the story into **named chapters** - each an `## ` heading. The name is
+Split the story into **named chapters**, each an `## ` heading. The name is
 evocative *and* legible: a reader skimming only the chapter titles should grasp
 the shape of the change. When a cute name alone wouldn't, pair it with the real
-subject after an em-dash:
+subject after a colon:
 
 ```
-## The Crime Scene - where the race actually fires
+## The Crime Scene: where the race actually fires
 ```
 
 Pick the PR's **genre**, then name the chapters as an *arc* through it:
 
-| Genre | Chapter arc (pick/adapt - don't use verbatim every time) |
+| Genre | Chapter arc (pick/adapt, don't use verbatim every time) |
 |-------|----------------------------------------------------------|
 | **Bug fix / hotfix** | The Crime Scene → The Smoking Gun → The Fix Is In → Closing the Case |
 | **Feature** | Laying the Foundation → Wiring It Up → The User's Door → The Last Mile |
@@ -45,7 +45,7 @@ Pick the PR's **genre**, then name the chapters as an *arc* through it:
 | **Performance** | The Bottleneck → The Diet → Before & After |
 | **Config / infra** | Moving the Furniture → The Blast Doors → Smoke Test |
 
-These are seeds, not a script - invent names that fit the actual PR. Keep them
+These are seeds, not a script; invent names that fit the actual PR. Keep them
 playful but never at the cost of legibility.
 
 **How many chapters** (scales with diff size, then the level multiplier):
@@ -58,14 +58,14 @@ playful but never at the cost of legibility.
 
 Chapter *flavor* tracks the reader level (see [levels.md](levels.md)): `outsider`
 gets warmer, more narrative names; `senior` gets drier, terser ones. The arc and
-the content do not change with level - only the wording.
+the content do not change with level, only the wording.
 
 ## Code snippets
 
 Every snippet is **a caption line immediately followed by a native fenced block.**
 
 ```` 
-**`client/src-tauri/src/session.rs`** · SessionStore - plaintext token at rest `[1]`
+**`client/src-tauri/src/session.rs`** · SessionStore, plaintext token at rest `[1]`
 ```diff
 +/// TODO(keychain): the token is stored as plaintext JSON in the app-data dir.
 +#[derive(Clone, Default, Serialize, Deserialize)]
@@ -75,10 +75,10 @@ Every snippet is **a caption line immediately followed by a native fenced block.
 ```
 ````
 
-**Caption line** (the Markdown paragraph directly above the fence - there must be
+**Caption line** (the Markdown paragraph directly above the fence; there must be
 exactly one, with nothing between it and the fence):
 
-- Format: `` **`<path>`** · <short description> `` - optionally a trailing back-ref
+- Format: `` **`<path>`** · <short description> ``, optionally a trailing back-ref
   `` `[N]` `` (see line references). Add the short commit SHA when it helps:
   `` **`path`** · `39486f4` · <description> ``.
 - The HTML viewer turns this paragraph into the snippet's header bar. In the
@@ -89,22 +89,22 @@ exactly one, with nothing between it and the fence):
 - Use ` ```diff ` for change snippets: `+`/`-` for added/removed lines, a leading
   space for context. Terminal and GitHub color these natively.
 - Use a language fence (` ```rust `, ` ```python `, …) when you're showing *existing*
-  code for orientation, not a change - then there's no `+`/`-`.
+  code for orientation, not a change, so there's no `+`/`-`.
 - Elide with a bare `...` line on its own. Keep snippets 5–40 lines; trim
   aggressively. For big structural additions show the shape/signature, not every
   line. Skip lock files, generated code, whitespace, import reordering.
-- **Never** put HTML comments, JSON, or ref markers *inside* a fence - they show
+- **Never** put HTML comments, JSON, or ref markers *inside* a fence; they show
   up as literal text everywhere.
 
 ## Line references (bidirectional)
 
 To tie a sentence to a specific snippet, use a shared number `[N]`:
 
-- In **prose**: write `[N]` where the claim is made - `…the author leads with the
-  uncomfortable part [1]:`.
+- In **prose**: write `[N]` where the claim is made, as in `…the author leads with
+  the uncomfortable part [1]:`.
 - In the snippet's **caption line**: end it with `` `[N]` `` (backticked). That
   marks the snippet as the *target* of ref N.
-- `N` is unique across the whole story (1, 2, 3, …) - never restart.
+- `N` is unique across the whole story (1, 2, 3, …); never restart.
 - One snippet may carry several refs (`` `[3]` `[4]` ``); the same `[N]` may be
   cited from prose more than once.
 
@@ -135,9 +135,9 @@ caption and the fence**:
 ```
 ````
 
-- Syntax: `<!-- aesop:lines N=a-b M=c -->` - `N=a-b` is a range, `N=c` a single
-  line. Space-separated, one comment can map several refs.
-- Line numbers are **1-based within the fence body** - count every line between
+- Syntax: `<!-- aesop:lines N=a-b M=c -->`, where `N=a-b` is a range and `N=c` a
+  single line. Space-separated, one comment can map several refs.
+- Line numbers are **1-based within the fence body**, counting every line between
   the fences, including context lines and any `...` elision.
 - In the HTML viewer, ref `[3]`'s prose badge scrolls to (and flashes) lines 3–6
   and those lines carry a persistent accent bar; `[4]` points at line 8.
@@ -168,7 +168,7 @@ graph TD
 ````
 
 Don't diagram trivial PRs. One or two for a medium PR; a few for a large one.
-Prose carries the narrative - diagrams support it.
+Prose carries the narrative; diagrams support it.
 
 ## Narrative rules
 
@@ -179,7 +179,7 @@ Prose carries the narrative - diagrams support it.
   choices. Skip boilerplate.
 - Weave in discussion context: "After review feedback the author switched to…",
   "As noted in the thread, this trade-off was intentional because…".
-- Flag potential issues briefly where you see them - the deep read belongs in the
+- Flag potential issues briefly where you see them; the deep read belongs in the
   moral.
 
 ## Length guidelines
@@ -193,4 +193,4 @@ Prose carries the narrative - diagrams support it.
 Large PRs: be highly selective. Narrate the spine of the change, not every leaf.
 
 These counts are the `intermediate` baseline. Scale them by the reader level's
-multiplier - see [levels.md](levels.md) (outsider ~1.5×, senior ~0.6×).
+multiplier; see [levels.md](levels.md) (outsider ~1.5×, senior ~0.6×).

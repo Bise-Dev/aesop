@@ -4,7 +4,7 @@
 # Prints delimited sections to stdout. Requires: gh (authenticated), jq.
 #
 # jq notes (interactive shells): avoid the "not equal" operator (history
-# expansion eats it) - use `length > 0`; avoid `\(...)` interpolation - use `+`.
+# expansion eats it), use `length > 0`; avoid `\(...)` interpolation, use `+`.
 set -euo pipefail
 
 PR="${1:-}"

@@ -1,10 +1,10 @@
-# Aesop - PR storyteller
+# Aesop: PR storyteller
 
-> Every pull request has a story. Aesop tells it - and ends with the moral.
+> Every pull request has a story. Aesop tells it, and ends with the moral.
 
 A Claude Code skill that turns a pull request into a narrated walkthrough:
 what the author did, why, how it evolved across commits, with embedded code
-snippets and Mermaid diagrams - then closes with **the moral**: a blunt read on
+snippets and Mermaid diagrams, then closes with **the moral**: a blunt read on
 the change's criticality and blast radius.
 
 ## Install
@@ -44,7 +44,7 @@ No flags → the story prints to the terminal, then Aesop offers to export it.
 
 ## The explanation level
 
-One dial - the reader's expertise - sets what to assume vs explain, jargon,
+One dial, the reader's expertise, sets what to assume vs explain, jargon,
 analogies, per-snippet commentary, diagram count, and prose density. It **never**
 changes the risk verdict: an outsider gets the same blast-radius read as a
 senior, just framed in plain "what breaks, who feels it" terms.
@@ -63,11 +63,11 @@ Details: [`skills/aesop/references/levels.md`](skills/aesop/references/levels.md
 1. **Gathers** PR metadata, files, commits, review + inline comments, and the
    full diff (auto-detecting the current branch's PR via `gh`).
 2. **Mines intent** from the description and review discussion.
-3. **Assesses blast radius** - direct callers/importers by default; escalates to
+3. **Assesses blast radius**: direct callers/importers by default; escalates to
    a deep full-graph trace when the change is critical or far-reaching.
 4. **Narrates** the story in logical (intent) order with `story-diff` snippets,
    line references, and Mermaid diagrams for cross-file flows.
-5. **Closes with the moral** - a criticality + blast-radius risk table and a
+5. **Closes with the moral**: a criticality + blast-radius risk table and a
    one-line "what to watch".
 
 ## Repo layout
@@ -93,9 +93,9 @@ aesop/
 
 ## Notes
 
-Risk verdicts are advisory - double-check high-impact conclusions with a
+Risk verdicts are advisory; double-check high-impact conclusions with a
 qualified reviewer before acting on them.
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
