@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "aesop",
+  "displayName": "Aesop — PR storyteller",
+  "version": "1.0.0",
+  "description": "Tells the story of a pull request: narrates the changes with code snippets and Mermaid diagrams, then closes with a moral assessing criticality and blast radius. Tunable explanation level.",
+  "author": {
+    "name": "Bise-Dev",
+    "url": "https://github.com/Bise-Dev"
+  },
+  "homepage": "https://github.com/Bise-Dev/aesop#readme",
+  "repository": "https://github.com/Bise-Dev/aesop",
+  "license": "MIT",
+  "keywords": [
+    "pull-request",
+    "pr",
+    "code-review",
+    "narrative",
+    "storytelling",
+    "blast-radius",
+    "impact-analysis",
+    "mermaid"
+  ]
+}
